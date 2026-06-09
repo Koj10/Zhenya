@@ -51,7 +51,7 @@ nano .env
 ```env
 TELEGRAM_BOT_TOKEN=ваш_токен
 TELEGRAM_CHAT_ID=-5004253620
-PORT=3000
+PORT=3003
 NODE_ENV=production
 SITE_URL=https://nabiullin-mgn.ru
 ```
@@ -64,7 +64,7 @@ SITE_URL=https://nabiullin-mgn.ru
 cd /var/www/nabiullin
 docker compose up -d --build
 docker compose ps
-curl http://127.0.0.1:3000/api/health
+curl http://127.0.0.1:3003/api/health
 ```
 
 ---
@@ -126,9 +126,9 @@ bash deploy/update.sh
 ## Архитектура
 
 ```
-Интернет → nginx :443 → 127.0.0.1:3000 (Docker)
+Интернет → nginx :443 → 127.0.0.1:3003 (Docker)
                          ├── статика (HTML, CSS, JS, VaP)
                          └── POST /api/contact → Telegram
 ```
 
-Порт 3000 снаружи **не открыт** — только nginx на 80/443.
+Приложение слушает порт **3003** (`3003:3003` в docker-compose). С nginx снаружи доступны только 80/443.

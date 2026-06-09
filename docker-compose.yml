@@ -4,15 +4,15 @@ services:
     container_name: nabiullin-site
     restart: unless-stopped
     ports:
-      - "127.0.0.1:3000:3000"
+      - "3003:3003"
     env_file:
       - .env
     environment:
       - NODE_ENV=production
-      - PORT=3000
+      - PORT=3003
       - SITE_URL=https://nabiullin-mgn.ru
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/api/health"]
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3003/api/health"]
       interval: 30s
       timeout: 5s
       retries: 3
