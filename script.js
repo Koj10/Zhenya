@@ -1,5 +1,5 @@
 /**
- * НАБИУЛИН — Premium Landing Scripts
+ * НАБИУЛЛИН — Premium Landing Scripts
  */
 
 (function () {
@@ -37,6 +37,7 @@
   function closeNav() {
     burger?.classList.remove('burger--active');
     nav?.classList.remove('nav--open');
+    header?.classList.remove('header--nav-open');
     overlay.classList.remove('nav-overlay--visible');
     burger?.setAttribute('aria-expanded', 'false');
     if (!document.querySelector('.modal--open')) {
@@ -47,6 +48,7 @@
   function openNav() {
     burger?.classList.add('burger--active');
     nav?.classList.add('nav--open');
+    header?.classList.add('header--nav-open');
     overlay.classList.add('nav-overlay--visible');
     burger?.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
@@ -618,6 +620,17 @@
   });
 
   // ---- Smooth anchor scroll ----
+  function scrollToTarget(target) {
+    const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 72;
+    const extra = target.id === 'contactForm' ? 24 : 0;
+    const top = target.getBoundingClientRect().top + window.scrollY - headerH - extra;
+    window.scrollTo({ top, behavior: 'smooth' });
+    if (target.id === 'contactForm') {
+      const nameInput = target.querySelector('#name');
+      window.setTimeout(() => nameInput?.focus({ preventScroll: true }), 500);
+    }
+  }
+
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', (e) => {
       const id = anchor.getAttribute('href');
@@ -625,9 +638,13 @@
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'), 10) || 72;
-      const top = target.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      const navWasOpen = nav?.classList.contains('nav--open');
+      if (navWasOpen) closeNav();
+      if (navWasOpen) {
+        requestAnimationFrame(() => requestAnimationFrame(() => scrollToTarget(target)));
+      } else {
+        scrollToTarget(target);
+      }
     });
   });
 

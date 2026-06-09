@@ -15,6 +15,7 @@
   <meta name="yandex-verification" content="YANDEX_VERIFICATION_CODE">
   <meta name="google-site-verification" content="GOOGLE_VERIFICATION_CODE">
   <link rel="canonical" href="https://nabiullin-mgn.ru/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="Ведущий Магнитогорск | Евгений Набиуллин">
@@ -33,7 +34,7 @@
     "@type": "LocalBusiness",
     "@id": "https://nabiullin-mgn.ru/#business",
     "name": "Евгений Набиуллин — ведущий Магнитогорск",
-    "alternateName": "НАБИУЛИН",
+    "alternateName": "НАБИУЛЛИН",
     "description": "Профессиональный ведущий свадеб, корпоративов и юбилеев в Магнитогорске. Тамада, шоумен, конферансье.",
     "url": "https://nabiullin-mgn.ru",
     "telephone": "+7-982-112-05-81",
@@ -144,7 +145,7 @@
     <div class="container header__inner">
       <a href="/" class="logo" aria-label="Евгений Набиуллин — ведущий Магнитогорск">
         <span class="logo__mark">EN</span>
-        <span class="logo__text">НАБИУЛИН</span>
+        <span class="logo__text">НАБИУЛЛИН</span>
       </a>
 
       <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
@@ -161,10 +162,10 @@
             <li><a href="#prices" class="nav__link">Цены</a></li>
             <li><a href="#portfolio" class="nav__link">Галерея</a></li>
             <li><a href="#faq" class="nav__link">FAQ</a></li>
-            <li class="nav__item--mobile"><a href="#contact" class="nav__link nav__link--cta">Контакты</a></li>
+            <li class="nav__item--mobile"><a href="#contactForm" class="nav__link nav__link--cta">Контакты</a></li>
           </ul>
         </nav>
-        <a href="#contact" class="header__cta">Контакты</a>
+        <a href="#contactForm" class="header__cta">Контакты</a>
       </div>
     </div>
   </header>
@@ -177,19 +178,17 @@
           <span class="hero__title-line">Ведущий</span>
           <span class="hero__title-line hero__title-line--accent">Магнитогорск</span>
         </h1>
-        <div class="hero__pulse-line reveal" data-delay="2" aria-hidden="true"></div>
-        <p class="hero__subtitle reveal" data-delay="3">Тамада · Шоумен · Конферансье премиального уровня</p>
+        <p class="hero__subtitle reveal" data-delay="2">Тамада · Шоумен · Конферансье премиального уровня</p>
         <p class="hero__geo reveal" data-delay="3">
           Работаю по всему Магнитогорску: <strong>Ленинский</strong>, <strong>Правобережный</strong>, <strong>Орджоникидзевский</strong>, <strong>32-й микрорайон</strong>, посёлки
         </p>
         <a href="tel:+79821120581" class="hero__phone reveal" data-delay="4">8 982 112-05-81</a>
-        <a href="#contact" class="btn btn--primary btn--glitch reveal" data-delay="4">
-          <span class="btn__text">ЗАБРОНИРОВАТЬ ДАТУ</span>
-          <span class="btn__glitch" aria-hidden="true">ЗАБРОНИРОВАТЬ ДАТУ</span>
-        </a>
-        <div class="hero__scroll-hint reveal" data-delay="5" aria-hidden="true">
-          <span>SCROLL</span>
-          <div class="hero__scroll-line"></div>
+        <div class="hero__cta reveal" data-delay="4">
+          <a href="#contactForm" class="btn btn--primary btn--glitch">
+            <span class="btn__text">ЗАБРОНИРОВАТЬ ДАТУ</span>
+            <span class="btn__glitch" aria-hidden="true">ЗАБРОНИРОВАТЬ ДАТУ</span>
+          </a>
+          <div class="hero__pulse-line" aria-hidden="true"></div>
         </div>
       </div>
       <div class="hero__stage-deco" aria-hidden="true">
@@ -270,8 +269,9 @@
         <div class="prices__grid">
           <article class="price-card reveal" data-delay="1">
             <h3 class="price-card__title">Свадьба</h3>
-            <p class="price-card__value">от <span>25 000</span> ₽</p>
+            <p class="price-card__value">от <span>50 000</span> ₽</p>
             <ul class="price-card__list">
+              <li>Помощь в организации и подготовке</li>
               <li>4–6 часов программы</li>
               <li>Индивидуальный сценарий</li>
               <li>Конкурсы и интерактив</li>
@@ -279,8 +279,9 @@
           </article>
           <article class="price-card reveal price-card--featured" data-delay="2">
             <h3 class="price-card__title">Корпоратив</h3>
-            <p class="price-card__value">от <span>35 000</span> ₽</p>
+            <p class="price-card__value">от <span>40 000</span> ₽</p>
             <ul class="price-card__list">
+              <li>4–5 часов программы</li>
               <li>До 500 гостей</li>
               <li>Тимбилдинг-элементы</li>
               <li>Работа с артистами</li>
@@ -288,9 +289,9 @@
           </article>
           <article class="price-card reveal" data-delay="3">
             <h3 class="price-card__title">Юбилей / Выпускной</h3>
-            <p class="price-card__value">от <span>15 000</span> ₽</p>
+            <p class="price-card__value">от <span>40 000</span> ₽</p>
             <ul class="price-card__list">
-              <li>3–5 часов</li>
+              <li>4–5 часов</li>
               <li>Адаптация под возраст</li>
               <li>Любая площадка города</li>
             </ul>
@@ -411,7 +412,7 @@
         <a href="#services-svadba">Свадьба</a>
         <a href="#services-korporativ">Корпоратив</a>
         <a href="#prices">Цены</a>
-        <a href="#contact">Контакты</a>
+        <a href="#contactForm">Контакты</a>
       </nav>
     </div>
   </footer>

@@ -1,5 +1,5 @@
 /* ============================================
-   НАБИУЛИН — Premium Event Host Landing
+   НАБИУЛЛИН — Premium Event Host Landing
    Colors: Gold #FFD700, Black #0A0A0A
    ============================================ */
 
@@ -181,6 +181,10 @@ body {
 .header--scrolled {
   border-bottom-color: rgba(128, 0, 32, 0.4);
   background: rgba(10, 10, 10, 0.95);
+}
+
+.header--nav-open {
+  z-index: 110;
 }
 
 .header__inner {
@@ -473,13 +477,21 @@ body {
   max-width: 100%;
 }
 
+.hero__cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
 .hero__pulse-line {
   width: 120px;
   height: 3px;
-  margin: 0 auto 1.5rem;
+  margin: 0;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   animation: pulse-line 2s ease-in-out infinite;
   box-shadow: 0 0 20px var(--gold-glow);
+  transform-origin: center center;
 }
 
 @keyframes pulse-line {
@@ -522,32 +534,6 @@ body {
 
 .hero__phone:hover {
   text-shadow: 0 0 25px var(--gold-glow);
-}
-
-.hero__scroll-hint {
-  position: absolute;
-  bottom: -3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.3em;
-  color: var(--graphite);
-}
-
-.hero__scroll-line {
-  width: 1px;
-  height: 40px;
-  background: linear-gradient(180deg, var(--gold), transparent);
-  animation: scroll-line 2s ease-in-out infinite;
-}
-
-@keyframes scroll-line {
-  0%, 100% { transform: scaleY(0.5); opacity: 0.3; }
-  50% { transform: scaleY(1); opacity: 1; }
 }
 
 .hero__stage-deco {
@@ -1323,6 +1309,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
+  scroll-margin-top: calc(var(--header-h) + 1.5rem);
 }
 
 .form-group {
