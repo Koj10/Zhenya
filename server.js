@@ -13,7 +13,15 @@ const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '16kb' }));
-app.use(express.static(__dirname, { maxAge: '7d', etag: true }));
+app.use(express.static(__dirname, {
+  maxAge: '7d',
+  etag: true,
+  setHeaders(res, filePath) {
+    if (/\.(html|css|js)$/i.test(filePath)) {
+      res.setHeader('Cache-Control', 'no-cache');
+    }
+  },
+}));
 
 function escapeHtml(text) {
   return String(text)

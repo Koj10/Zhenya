@@ -26,20 +26,16 @@
   const contactSubmit = document.getElementById('contactSubmit');
 
   // ---- Nav overlay (mobile) ----
-  let overlay = document.querySelector('.nav-overlay');
-  if (!overlay) {
-    overlay = document.createElement('div');
-    overlay.className = 'nav-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.appendChild(overlay);
-  }
+  const overlay = document.getElementById('navOverlay');
 
   function closeNav() {
     burger?.classList.remove('burger--active');
     nav?.classList.remove('nav--open');
     header?.classList.remove('header--nav-open');
-    overlay.classList.remove('nav-overlay--visible');
+    overlay?.classList.remove('nav-overlay--visible');
+    overlay?.setAttribute('aria-hidden', 'true');
     burger?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('nav-open');
     if (!document.querySelector('.modal--open')) {
       document.body.style.overflow = '';
     }
@@ -49,8 +45,10 @@
     burger?.classList.add('burger--active');
     nav?.classList.add('nav--open');
     header?.classList.add('header--nav-open');
-    overlay.classList.add('nav-overlay--visible');
+    overlay?.classList.add('nav-overlay--visible');
+    overlay?.setAttribute('aria-hidden', 'false');
     burger?.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('nav-open');
     document.body.style.overflow = 'hidden';
   }
 
@@ -59,7 +57,7 @@
     isOpen ? closeNav() : openNav();
   });
 
-  overlay.addEventListener('click', closeNav);
+  overlay?.addEventListener('click', closeNav);
 
   nav?.querySelectorAll('.nav__link').forEach((link) => {
     link.addEventListener('click', () => {
