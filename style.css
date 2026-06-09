@@ -491,6 +491,33 @@ body {
   max-width: 100%;
 }
 
+@media (max-width: 767px) {
+  .hero__title {
+    font-size: clamp(2.25rem, 11vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.75rem;
+    padding: 0 0.25rem;
+  }
+
+  .hero__title-line {
+    text-shadow: none;
+    color: var(--champagne);
+  }
+
+  .hero__title-line--accent {
+    font-size: clamp(1.85rem, 8.5vw, 2.5rem);
+    margin-top: 0.15rem;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+    color: var(--gold);
+    filter: none;
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
 .hero__cta {
   display: flex;
   flex-direction: column;
