@@ -11,13 +11,16 @@ const VIDEO_EXT = ['.mp4', '.webm', '.mov', '.m4v'];
 const CONVERT_EXT = ['.mov'];
 
 function resolveVaPDir() {
+  const dirs = fs.readdirSync(__dirname, { withFileTypes: true }).filter((e) => e.isDirectory());
   for (const name of ['VaP', 'Vap', 'vap']) {
-    const dir = path.join(__dirname, name);
-    if (fs.existsSync(dir)) return dir;
+    const exact = dirs.find((e) => e.name === name);
+    if (exact) return path.join(__dirname, exact.name);
   }
-  const dir = path.join(__dirname, 'VaP');
+  const fuzzy = dirs.find((e) => e.name.toLowerCase() === 'vap');
+  if (fuzzy) return path.join(__dirname, fuzzy.name);
+  const dir = path.join(__dirname, 'Vap');
   fs.mkdirSync(dir);
-  console.log('Создана папка VaP/');
+  console.log('Создана папка Vap/');
   return dir;
 }
 
@@ -37,7 +40,9 @@ function mp4PathFor(file) {
 
 function needsConversion(srcPath, destPath) {
   if (!fs.existsSync(destPath)) return true;
-  return fs.statSync(srcPath).mtimeMs > fs.statSync(destPath).mtimeMs;
+  const destStat = fs.statSync(destPath);
+  if (destStat.size === 0) return true;
+  return fs.statSync(srcPath).mtimeMs > destStat.mtimeMs;
 }
 
 function convertToMp4(VaP_DIR, file) {
@@ -56,12 +61,12 @@ function convertToMp4(VaP_DIR, file) {
     [
       '-y', '-i', src,
       '-c:v', 'libx264', '-preset', 'fast', '-crf', '23',
-      '-vf', "scale='min(1920,iw)':-2",
+      '-vf', 'scale=min(1920\\,iw):-2',
       '-c:a', 'aac', '-b:a', '128k',
       '-movflags', '+faststart',
       dest,
     ],
-    { stdio: 'inherit', shell: true }
+    { stdio: 'inherit' }
   );
 
   if (result.status !== 0) {
@@ -126,7 +131,11 @@ function humanTitle(file, type) {
     .replace(/[-_]+/g, ' ')
     .trim();
 
-  const isGenericPhoto = type === 'image' && (/^\d{8,}/.test(raw) || /^photo/i.test(file));
+  const isGenericPhoto = type === 'image' && (
+    /^\d{8,}/.test(raw) ||
+    /^photo/i.test(file) ||
+    /^\d{4}\s+\d{2}\s+\d{2}/.test(raw)
+  );
   const isGenericVideo = type === 'video' && /^img\s*\d+/i.test(raw);
 
   if (isGenericPhoto) {
